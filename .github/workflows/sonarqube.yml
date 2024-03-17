@@ -35,11 +35,9 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=group2
-            -Dsonar.sources=src
-            -Dsonar.test=src/test
-            -Dsonar.test.inclusions=src/**/*.test.js
-            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
-            -Dsonar.testExecutionReportPaths=./coverage/test-reporter.xml
+            -Dsonar.sources=${{ github.workspace }}/WWA-backend-master
+            -Dsonar.javascript.lcov.reportPaths=${{ github.workspace }}/WWA-backend-master/coverage/lcov.info
+            -Dsonar.testExecutionReportPaths=${{ github.workspace }}/WWA-backend-master/coverage/test-reporter.xml
             -Dsonar.sourceEncoding=UTF-8
         env:
           JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/17.0.10-7/x64
