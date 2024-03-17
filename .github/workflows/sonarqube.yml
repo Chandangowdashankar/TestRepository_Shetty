@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Jest tests with coverage
         run: npm test -- --coverage || true
-        # Run tests with coverage, ignoring failures with '|| true'
+        # Run tests with coverage, ignoring failures with '|| true'#####
 
       - name: Set up JDK 17
         uses: actions/setup-java@v2
