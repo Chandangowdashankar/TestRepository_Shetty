@@ -19,9 +19,7 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: 
-           cd WWA-backend-master
-           npm install
+        run: cd WWA-backend-master && npm install
 
       - name: Run Jest tests with coverage
         run: 
