@@ -24,18 +24,11 @@ jobs:
       - name: Run Jest tests with coverage
         run: |
           cd WWA-backend-master
-          npm test -- --coverage --no-cache || true
-
-      - name: List contents of coverage directory
-        run: ls -l WWA-backend-master/coverage/lcov-report
-
+          npm test 
+          
       - name: cat lcov.info
         run: cat WWA-backend-master/coverage/lcov.info
-
-      - name: cat lcov.info
-        run: cat WWA-backend-master/coverage/lcov.info
-
-
+        
       - name: Copy coverage report to root directory
         run: mv WWA-backend-master/coverage/lcov-report/lcov.info ./lcov.info
         
