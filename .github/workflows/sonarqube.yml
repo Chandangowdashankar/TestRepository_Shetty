@@ -24,8 +24,6 @@ jobs:
       - name: Run Jest tests with coverage
         run: cd WWA-backend-master && npm test -- --coverage --no-cache || true
 
-        # Run tests with coverage, ignoring failures with '|| true'#####      
-
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
@@ -35,14 +33,16 @@ jobs:
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
-          override-existing: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
-          args:
+          args: >
             -Dsonar.projectKey=group2
-            -Dsonar.coverage.javascript.lcovReportPaths=coverage/lcov.info
-            # Add other SonarQube analysis parameters as needed
-    
-
+            -Dsonar.sources=src
+            -Dsonar.test=src/test
+            -Dsonar.test.inclusions=src/**/*.test.js
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
+            -Dsonar.testExecutionReportPaths=./coverage/test-reporter.xml
+            -Dsonar.sourceEncoding=UTF-8
+            # Add any other SonarQube analysis parameters as needed
