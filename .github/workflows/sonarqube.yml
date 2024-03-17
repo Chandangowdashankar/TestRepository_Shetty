@@ -22,7 +22,8 @@ jobs:
         run: cd WWA-backend-master && npm install
 
       - name: Run Jest tests with coverage
-        run: cd WWA-backend-master && npm test -- --coverage || true
+        run: cd WWA-backend-master && npm test -- --coverage --no-cache || true
+
         # Run tests with coverage, ignoring failures with '|| true'#####      
 
       - name: Set up JDK 17
@@ -43,4 +44,5 @@ jobs:
             -Dsonar.projectKey=group2
             -Dsonar.coverage.javascript.lcovReportPaths=coverage/lcov.info
             # Add other SonarQube analysis parameters as needed
+    
 
