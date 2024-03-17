@@ -22,7 +22,12 @@ jobs:
         run: cd WWA-backend-master && npm install
 
       - name: Run Jest tests with coverage
-        run: cd WWA-backend-master && npm test -- --coverage --no-cache || true
+        run: |
+          cd WWA-backend-master
+          npm test -- --coverage --no-cache || true
+
+      - name: Copy coverage report to root directory
+        run: mv WWA-backend-master/coverage/lcov.info ./lcov.info
 
       - name: Set up JDK 17
         uses: actions/setup-java@v2
@@ -32,13 +37,13 @@ jobs:
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   
-          override-existing: true
         with:
-          args:
+          args: >
             -Dsonar.projectKey=group2
-            -Dsonar.coverage.javascript.lcovReportPaths=coverage/lcov.info
-            # Add other SonarQube analysis parameters as needed
+            -Dsonar.sources=${{ github.workspace }}/WWA-backend-master
+            -Dsonar.javascript.lcov.reportPaths=./lcov.info
+            -Dsonar.sourceEncoding=UTF-8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
