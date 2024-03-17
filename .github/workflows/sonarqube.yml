@@ -26,6 +26,10 @@ jobs:
           cd WWA-backend-master
           npm test -- --coverage --no-cache || true
 
+      - name: List contents of coverage directory
+        run: ls -l WWA-backend-master/coverage
+
+
       - name: Copy coverage report to root directory
         run: mv WWA-backend-master/coverage/lcov-report/lcov.info ./lcov.info
         
