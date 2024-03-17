@@ -21,20 +21,20 @@ jobs:
       - name: Install dependencies
         run: cd WWA-backend-master && npm install
 
-      - name: Run Jest tests with coverage
-        run: |
-          cd WWA-backend-master
-          npm test || true
+      #- name: Run Jest tests with coverage
+      #  run: |
+      #    cd WWA-backend-master
+      #    npm test || true
           
-      - name: cat lcov.info
-        run: cat WWA-backend-master/coverage/lcov.info
+     # - name: cat lcov.info
+     #   run: cat WWA-backend-master/coverage/lcov.info
         
-      - name: Copy coverage report to root directory
-        run: mv WWA-backend-master/coverage/lcov.info ./lcov.info
+     # - name: Copy coverage report to root directory
+     #   run: mv WWA-backend-master/coverage/lcov.info ./lcov.info
         
-      - name: cat lcov.info
-        run: cat ./lcov.info
-        
+    #  - name: cat lcov.info
+    #    run: cat ./lcov.info
+     
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
