@@ -30,7 +30,7 @@ jobs:
         run: cat WWA-backend-master/coverage/lcov.info
         
       - name: Copy coverage report to root directory
-        run: mv WWA-backend-master/coverage/lcov-report/lcov.info ./lcov.info
+        run: mv WWA-backend-master/coverage/lcov.info ./lcov.info
         
       - name: cat lcov.info
         run: cat ./lcov.info
