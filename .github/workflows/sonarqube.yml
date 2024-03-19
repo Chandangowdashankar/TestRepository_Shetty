@@ -5,8 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      
       - name: Change to WWA-backend-master directory
         run: cd WWA-backend-master
+      
+      - name: List contents of the directory
+        run: ls -al
       
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
