@@ -4,12 +4,10 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      
+      - uses: actions/checkout@master
+      - name: Change directory to WWA-backend-master
+        run: cd WWA-backend-master || exit 1
       - name: Run Snyk to check for vulnerabilities
-        run: |
-          cd WWA-backend-master || exit 1
-          ls -al  # List contents for debugging purposes
-          snyk/actions/node@master
+        uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
