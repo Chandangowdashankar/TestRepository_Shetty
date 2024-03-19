@@ -6,12 +6,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Change directory to WWA-backend-master
+      - name: Run Snyk to check for vulnerabilities in WWA-backend-master directory
         run: |
           cd WWA-backend-master || exit 1
           ls -al  # List contents for debugging purposes
-          
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
+          snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
