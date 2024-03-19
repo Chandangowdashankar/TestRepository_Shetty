@@ -6,10 +6,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Change directory and run Snyk scan in WWA-backend-master
-        run: |
-          cd WWA-backend-master || exit 1
-          ls -al  # List contents for debugging purposes
+      - name: Change directory to WWA-backend-master
+        run: cd WWA-backend-master || exit 1
+
+      - name: List contents of the directory
+        run: ls -al
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        with:
+          args: test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        uses: snyk/actions/node@master
