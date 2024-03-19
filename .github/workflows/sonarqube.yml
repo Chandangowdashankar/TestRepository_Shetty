@@ -10,8 +10,6 @@ jobs:
         run: |
           cd WWA-backend-master || exit 1
           ls -al  # List contents for debugging purposes
+          snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        uses: snyk/actions/node@master
-        with:
-          args: test
