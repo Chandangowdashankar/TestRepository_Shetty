@@ -11,12 +11,11 @@ jobs:
           cd WWA-backend-master || exit 1
           ls -al  # List contents for debugging purposes
           
-          
       - name: Run Snyk to check for vulnerabilities
         run: |
           cd WWA-backend-master || exit 1
           ls -al  # List contents for debugging purposes
           # Run Snyk within the WWA-backend-master directory
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          uses: snyk/actions/node@master
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
